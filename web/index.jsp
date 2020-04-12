@@ -46,14 +46,14 @@
                             </a>
                         </div>
                         <div class="login-form">
-                            <form action="adminAccueil.jsp" method="post">
+                            <form action="testLogin" method="post">
                                 <div class="form-group">
                                     <label>Nom d'utilisateur</label>
-                                    <input class="au-input au-input--full" type="email" name="email" placeholder="Nom d'utilisateur">
+                                    <input class="au-input au-input--full" type="text" name="user" placeholder="Nom d'utilisateur">
                                 </div>
                                 <div class="form-group">
                                     <label>Mot de passe</label>
-                                    <input class="au-input au-input--full" type="password" name="password" placeholder="Mot de passe">
+                                    <input class="au-input au-input--full" type="password" name="pass" placeholder="Mot de passe">
                                 </div>
                                 <div class="login-checkbox">
                                     <label>
