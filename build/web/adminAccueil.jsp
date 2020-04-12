@@ -163,26 +163,48 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
+                            <a href="adminAccueil.jsp">
+                                <i class="fas fa-home"></i>Accueil</a>
+                        </li>
+                        <li>
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                                <i class="fas fa-medkit"></i>Médicamnent</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="index.html">Dashboard 1</a>
+                                    <a href="nouveauMed.jsp">Nouveau</a>
                                 </li>
                                 <li>
-                                    <a href="index2.html">Dashboard 2</a>
+                                    <a href="index2.html">Entrée en Stock</a>
                                 </li>
                                 <li>
-                                    <a href="index3.html">Dashboard 3</a>
+                                    <a href="index3.html">Sortie en Stock</a>
                                 </li>
                                 <li>
-                                    <a href="index4.html">Dashboard 4</a>
+                                    <a href="index4.html">Stock Méd.</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-users"></i>Patients</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="index.html">Nouveau</a>
+                                </li>
+                                <li>
+                                    <a href="index2.html">Patients Internés</a>
+                                </li>
+                                <li>
+                                    <a href="index3.html">Patients Suivis</a>
+                                </li>
+                                <li>
+                                    <a href="index4.html">Stock Méd.</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
                             <a href="chart.html">
-                                <i class="fas fa-chart-bar"></i>Charts</a>
+                                <i class="fas fa-users"></i>Patients</a>
                         </li>
                         <li>
                             <a href="table.html">
