@@ -26,6 +26,11 @@ public class utilisateur {
         this.idu = idu;
     }
 
+    public utilisateur(String nomUser, String typeCompte, int niveauAcces) {
+        this.nomUser = nomUser;
+        this.typeCompte = typeCompte;
+        this.niveauAcces = niveauAcces;
+    }
     
 
     public String getNomUser() {

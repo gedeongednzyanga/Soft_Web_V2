@@ -26,8 +26,6 @@ public class servProduit extends HttpServlet {
             DAOProduit produit = new DAOProduit();
             produit p = new produit();
             RequestDispatcher rd =null;
-            String colonne, ligne;
-            
             try{
                 if(request.getParameter("btn") != null){
                     p.setAction(Integer.parseInt(request.getParameter("action")));
@@ -37,13 +35,8 @@ public class servProduit extends HttpServlet {
                     p.setStockAlert(Integer.parseInt(request.getParameter("alert")));
                     p.setIdcat(Integer.parseInt(request.getParameter("catego")));
                     produit.Insert(p);
-                }else if(request.getParameter("btnSearch") != null){
-                    colonne = request.getParameter("colone");
-                    ligne = request.getParameter("ligne");
-                    produit.Search( ligne);
-                   
                 }
-                rd = request.getRequestDispatcher("medicament.jsp");
+                rd = request.getRequestDispatcher("nouveauMed.jsp");
             }catch(Exception e){
                 
             }

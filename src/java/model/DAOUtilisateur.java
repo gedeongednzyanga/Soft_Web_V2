@@ -66,7 +66,4 @@ public class DAOUtilisateur implements Operations {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public void testUtilisateur(){
-        
-    }
 }

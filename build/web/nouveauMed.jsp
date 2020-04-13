@@ -4,6 +4,11 @@
     Author     : GEDEON
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="model.DAOCategorie"%>
+<%@page import="model.DAOProduit"%>
+<%@page import="view.produit"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -33,7 +38,12 @@
     <link href="css/theme.css" rel="stylesheet" media="all">
 
 </head>
-
+    <%
+        DAOProduit daop = new DAOProduit ();
+        DAOCategorie datacat = new DAOCategorie();
+        List <produit> data = new ArrayList<>();
+        List <produit> datac = new ArrayList<>();           
+    %>
 <body class="animsition">
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
@@ -291,7 +301,7 @@
                     <div class="container-fluid">
                         <div class="header-wrap">
                             <form class="form-header" action="" method="POST">
-                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
+                                <input class="au-input au-input--xl" type="text" name="search" data-table="customers-list" placeholder="Rechercher..." />
                                 <button class="au-btn--submit" type="submit">
                                     <i class="zmdi zmdi-search"></i>
                                 </button>
@@ -409,13 +419,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="account-wrap">
+                               <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
                                             <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">john doe</a>
+                                            <a class="js-acc-btn" href="#"><%= session.getAttribute("user") %></a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
@@ -428,26 +438,21 @@
                                                     <h5 class="name">
                                                         <a href="#">john doe</a>
                                                     </h5>
-                                                    <span class="email">johndoe@example.com</span>
+                                                    <span class="email"><%= session.getAttribute("compte") %></span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
                                                     <a href="#">
-                                                        <i class="zmdi zmdi-account"></i>Account</a>
+                                                        <i class="zmdi zmdi-account"></i>Comptes</a>
                                                 </div>
                                                 <div class="account-dropdown__item">
                                                     <a href="#">
-                                                        <i class="zmdi zmdi-settings"></i>Setting</a>
-                                                </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-money-box"></i>Billing</a>
+                                                        <i class="zmdi zmdi-settings"></i>Paramètres</a>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                                <a href="deconnexion.jsp"> <i class="zmdi zmdi-power"></i>Déconnexion</a>
                                             </div>
                                         </div>
                                     </div>
@@ -466,47 +471,50 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="card">
-                                    <div class="card-header">Credit Card</div>
+                                    <div class="card-header">
+                                        <strong>Médicament</strong>
+                                         <small>/Nouveau</small>
+                                    </div>
+                                   
                                     <div class="card-body">
                                         <div class="card-title">
-                                            <h3 class="text-center title-2">Pay Invoice</h3>
+                                            <h3 class="text-center title-2">Nouveau Produit</h3>
                                         </div>
                                         <hr>
-                                        <form action="" method="post" novalidate="novalidate">
+                                        <form action="servProduit" method="POST" novalidate="novalidate">
+                                            <input class="form-control" type="hidden" name="action" value="1">
+                                            <input class="form-control" type="hidden" name="id" value="0">
                                             <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Payment amount</label>
-                                                <input id="cc-pament" name="cc-payment" type="text" class="form-control" aria-required="true" aria-invalid="false" value="100.00">
+                                                <label for="produit" class="control-label mb-1">Désignation</label>
+                                                <input id="cc-pament" name="produit" type="text" autocomplete="off" class="form-control" aria-required="true" aria-invalid="false">
                                             </div>
                                             <div class="form-group has-success">
-                                                <label for="cc-name" class="control-label mb-1">Name on card</label>
-                                                <input id="cc-name" name="cc-name" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
-                                                <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                                                <label for="cc-name" class="control-label mb-1">P.U Vente</label>
+                                                <input id="cc-name" name="pvu" type="number" autocomplete="off" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
+                                                <span class="help-block field-validation-valid" data-valmsg-for="pvu" data-valmsg-replace="true"></span>
                                             </div>
                                             <div class="form-group">
-                                                <label for="cc-number" class="control-label mb-1">Card number</label>
-                                                <input id="cc-number" name="cc-number" type="tel" class="form-control cc-number identified visa" value="" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
+                                                <label for="alert" class="control-label mb-1">Stock Alert</label>
+                                                <input id="cc-number" name="alert" type="number" autocomplete="off" class="form-control cc-number identified visa" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
                                                 <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="form-group">
-                                                        <label for="cc-exp" class="control-label mb-1">Expiration</label>
-                                                        <input id="cc-exp" name="cc-exp" type="tel" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="MM / YY" autocomplete="cc-exp">
-                                                        <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <label for="x_card_code" class="control-label mb-1">Security code</label>
-                                                    <div class="input-group">
-                                                        <input id="x_card_code" name="x_card_code" type="tel" class="form-control cc-cvc" value="" data-val="true" data-val-required="Please enter the security code" data-val-cc-cvc="Please enter a valid security code" autocomplete="off">
-
-                                                    </div>
-                                                </div>
+                                             <div class="form-group">
+                                                 <label for="categorie" class="control-label mb-1">Catégorie</label>
+                                                <select class="form-control" name="catego" id="">
+                                                    <%
+                                                        datac = datacat.Load();
+                                                        for(produit cat : datac){
+                                                    %>
+                                                        <option value="<%= cat.getIdcat()%>"><%= cat.getCategorie() %></option>
+                                                    <%
+                                                        }
+                                                    %>
+                                                </select>
                                             </div>
                                             <div>
-                                                <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
-                                                    <i class="fa fa-lock fa-lg"></i>&nbsp;
-                                                    <span id="payment-button-amount">Pay $100.00</span>
+                                                <button id="payment-button" name="btn" type="submit" class="btn btn-lg btn-info btn-block">
+                                                    <i class="fa fa-sign-in fa-lg"></i>&nbsp;
+                                                    <span id="payment-button-amount">Enregistrer</span>
                                                     <span id="payment-button-sending" style="display:none;">Sending…</span>
                                                 </button>
                                             </div>
@@ -517,40 +525,48 @@
                             <div class="col-lg-6">
                                 <div class="card">
                                     <div class="card-header">
-                                        <strong>Company</strong>
-                                        <small> Form</small>
+                                        <strong>Médicaments</strong>
+                                        <small>/Liste</small>
                                     </div>
                                     <div class="card-body card-block">
-                                        <div class="form-group">
-                                            <label for="company" class=" form-control-label">Company</label>
-                                            <input type="text" id="company" placeholder="Enter your company name" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="vat" class=" form-control-label">VAT</label>
-                                            <input type="text" id="vat" placeholder="DE1234567890" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="street" class=" form-control-label">Street</label>
-                                            <input type="text" id="street" placeholder="Enter street name" class="form-control">
-                                        </div>
-                                        <div class="row form-group">
-                                            <div class="col-8">
-                                                <div class="form-group">
-                                                    <label for="city" class=" form-control-label">City</label>
-                                                    <input type="text" id="city" placeholder="Enter your city" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-8">
-                                                <div class="form-group">
-                                                    <label for="postal-code" class=" form-control-label">Postal Code</label>
-                                                    <input type="text" id="postal-code" placeholder="Postal Code" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="country" class=" form-control-label">Country</label>
-                                            <input type="text" id="country" placeholder="Country name" class="form-control">
-                                        </div>
+                                        
+                                       <div class="table-responsive">
+                                        <table class="table table-top-campaign customers-list">
+                                            <thead>
+                                                <th>Désignation</th>
+                                                <th>Catégorie</th>
+                                                <th>Action</th>
+                                            </thead>
+                                            <tbody>
+                                                <%
+                                                    int compteur;
+                                                    compteur = 0;
+                                                    data = daop.Load();
+                                                    for (produit p : data){
+                                                        compteur ++;
+                                                %>
+                                                <tr>
+                                                    <td><%= compteur+". "+ p.getDesignation() %></td>
+                                                    <td><%= p.getCategorie() %></td>
+                                                    <td>
+                                                        <div class="input-group-btn">
+                                                            <div class="btn-group">
+                                                                <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-info btn-sm">Action</button>
+                                                                <div tabindex="-1" aria-hidden="true" role="menu" class="dropdown-menu">
+                                                                    <a href="updatePages/modifMed.jsp?id= <%= p.getIdp() %>&amp;design=<%= p.getDesignation()%>&amp;pvu=<%= p.getPvu()%>&alert=<%= p.getStockAlert()%>&categorie=<%= p.getCategorie() %>" 
+                                                                       class="dropdown-item"><i class="zmdi zmdi-edit"></i>  Modifer</a>
+                                                                     <a href="" class="dropdown-item"><i class="zmdi zmdi-delete"></i>  Supprimer</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <%
+                                                    }
+                                                %>
+                                               
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -589,7 +605,45 @@
     <script src="vendor/chartjs/Chart.bundle.min.js"></script>
     <script src="vendor/select2/select2.min.js">
     </script>
+    <script type="text/javascript">
+        (function(document) {
+        'use strict';
 
+        var TableFilter = (function(myArray) {
+            var search_input;
+
+            function _onInputSearch(e) {
+                search_input = e.target;
+                var tables = document.getElementsByClassName(search_input.getAttribute('data-table'));
+                myArray.forEach.call(tables, function(table) {
+                    myArray.forEach.call(table.tBodies, function(tbody) {
+                        myArray.forEach.call(tbody.rows, function(row) {
+                            var text_content = row.textContent.toLowerCase();
+                            var search_val = search_input.value.toLowerCase();
+                            row.style.display = text_content.indexOf(search_val) > -1 ? '' : 'none';
+                        });
+                    });
+                });
+            }
+
+            return {
+                init: function() {
+                    var inputs = document.getElementsByClassName('search-input');
+                    myArray.forEach.call(inputs, function(input) {
+                        input.oninput = _onInputSearch;
+                    });
+                }
+            };
+        })(Array.prototype);
+
+        document.addEventListener('readystatechange', function() {
+            if (document.readyState === 'complete') {
+                TableFilter.init();
+            }
+        });
+
+    })(document);
+    </script>
     <!-- Main JS-->
     <script src="js/main.js"></script>
     </body>

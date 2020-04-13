@@ -49,7 +49,7 @@
                             <form action="testLogin" method="post">
                                 <div class="form-group">
                                     <label>Nom d'utilisateur</label>
-                                    <input class="au-input au-input--full" type="text" name="user" placeholder="Nom d'utilisateur">
+                                    <input class="au-input au-input--full" type="text" autocomplete="off" name="user" placeholder="Nom d'utilisateur">
                                 </div>
                                 <div class="form-group">
                                     <label>Mot de passe</label>
@@ -63,7 +63,7 @@
                                         <a href="#">Mot de passe oublé ?</a>
                                     </label>
                                 </div>
-                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Connexion</button>
+                                <button class="au-btn au-btn--block au-btn--green m-b-20" name="btn-connexion" type="submit">Connexion</button>
 
                             </form>
                             <div class="register-link">

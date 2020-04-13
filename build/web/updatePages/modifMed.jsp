@@ -17,32 +17,37 @@
         <title>Forms</title>
 
     <!-- Fontfaces CSS-->
-    <link href="css/font-face.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="../css/font-face.css" rel="stylesheet" media="all">
+    <link href="../vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
     <!-- Bootstrap CSS-->
-    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
     <!-- Vendor CSS-->
-    <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="../vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="../vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="../vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
-    <link href="css/theme.css" rel="stylesheet" media="all">
+    <link href="../css/theme.css" rel="stylesheet" media="all">
 
 </head>
     <%
         DAOProduit daop = new DAOProduit ();
         DAOCategorie datacat = new DAOCategorie();
         List <produit> data = new ArrayList<>();
-        List <produit> datac = new ArrayList<>();           
+        List <produit> datac = new ArrayList<>(); 
+        String id = request.getParameter("id");
+        String design = request.getParameter("design") ;
+        String pvu = request.getParameter("pvu");
+        String alert = request.getParameter("alert");
+        
     %>
 <body class="animsition">
     <div class="page-wrapper">
@@ -51,8 +56,8 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
-                            <img src="images/icon/logo.png" alt="CoolAdmin" />
+                        <a class="logo" href="index.jsp">
+                            <img src="../images/icon/logo.png" alt="CoolAdmin" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -167,7 +172,7 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="images/icon/logo.png" alt="Cool Admin" />
+                    <img src="../images/icon/logo.png" alt="Cool Admin" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -317,7 +322,7 @@
                                             </div>
                                             <div class="mess__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-06.jpg" alt="Michelle Moreno" />
+                                                    <img src="../images/icon/avatar-06.jpg" alt="Michelle Moreno" />
                                                 </div>
                                                 <div class="content">
                                                     <h6>Michelle Moreno</h6>
@@ -327,7 +332,7 @@
                                             </div>
                                             <div class="mess__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-04.jpg" alt="Diane Myers" />
+                                                    <img src="../images/icon/avatar-04.jpg" alt="Diane Myers" />
                                                 </div>
                                                 <div class="content">
                                                     <h6>Diane Myers</h6>
@@ -349,7 +354,7 @@
                                             </div>
                                             <div class="email__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-06.jpg" alt="Cynthia Harvey" />
+                                                    <img src="../images/icon/avatar-06.jpg" alt="Cynthia Harvey" />
                                                 </div>
                                                 <div class="content">
                                                     <p>Meeting about new dashboard...</p>
@@ -358,7 +363,7 @@
                                             </div>
                                             <div class="email__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-05.jpg" alt="Cynthia Harvey" />
+                                                    <img src="../images/icon/avatar-05.jpg" alt="Cynthia Harvey" />
                                                 </div>
                                                 <div class="content">
                                                     <p>Meeting about new dashboard...</p>
@@ -367,7 +372,7 @@
                                             </div>
                                             <div class="email__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-04.jpg" alt="Cynthia Harvey" />
+                                                    <img src="../images/icon/avatar-04.jpg" alt="Cynthia Harvey" />
                                                 </div>
                                                 <div class="content">
                                                     <p>Meeting about new dashboard...</p>
@@ -422,7 +427,7 @@
                                <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                            <img src="../images/icon/avatar-01.jpg" alt="John Doe" />
                                         </div>
                                         <div class="content">
                                             <a class="js-acc-btn" href="#"><%= session.getAttribute("user") %></a>
@@ -431,7 +436,7 @@
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                                        <img src="../images/icon/avatar-01.jpg" alt="John Doe" />
                                                     </a>
                                                 </div>
                                                 <div class="content">
@@ -473,34 +478,36 @@
                                 <div class="card">
                                     <div class="card-header">
                                         <strong>Médicament</strong>
-                                         <small>/Nouveau</small>
+                                         <small>/Modifier</small>
                                     </div>
                                    
                                     <div class="card-body">
                                         <div class="card-title">
-                                            <h3 class="text-center title-2">Nouveau Produit</h3>
+                                            <h3 class="text-center title-2">Modifier Produit</h3>
                                         </div>
                                         <hr>
-                                        <form action="servProduit" method="POST" novalidate="novalidate">
-                                            <input class="form-control" type="hidden" name="action" value="1">
-                                            <input class="form-control" type="hidden" name="id" value="0">
+                                        <form action="../servProduit" method="post" novalidate="novalidate">
+                                            <div class="form-group">
+                                                <input class="form-control" type="hidden" name="action" value="2">
+                                                <input class="form-control" type="hidden" name="id" value="<%= id %>">
+                                            </div>
                                             <div class="form-group">
                                                 <label for="produit" class="control-label mb-1">Désignation</label>
-                                                <input id="cc-pament" name="produit" type="text" autocomplete="off" class="form-control" aria-required="true" aria-invalid="false">
+                                                <input id="cc-pament" name="produit" type="text" autocomplete="off" value="<%= design  %>" class="form-control" aria-required="true" aria-invalid="false">
                                             </div>
                                             <div class="form-group has-success">
                                                 <label for="cc-name" class="control-label mb-1">P.U Vente</label>
-                                                <input id="cc-name" name="pvu" type="number" autocomplete="off" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
-                                                <span class="help-block field-validation-valid" data-valmsg-for="pvu" data-valmsg-replace="true"></span>
+                                                <input id="cc-name" name="pvu" type="number" autocomplete="off" value="<%= pvu %>" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
+                                                <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
                                             </div>
                                             <div class="form-group">
                                                 <label for="alert" class="control-label mb-1">Stock Alert</label>
-                                                <input id="cc-number" name="alert" type="number" autocomplete="off" class="form-control cc-number identified visa" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
+                                                <input id="cc-number" name="alert" type="number" autocomplete="off" value="<%= alert %>"  class="form-control cc-number identified visa" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
                                                 <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
                                             </div>
-                                             <div class="form-group">
+                                            <div class="form-group">
                                                  <label for="categorie" class="control-label mb-1">Catégorie</label>
-                                                <select class="form-control" name="catego" id="">
+                                                <select class="form-control" name="catego" id="categorie">
                                                     <%
                                                         datac = datacat.Load();
                                                         for(produit cat : datac){
@@ -513,8 +520,8 @@
                                             </div>
                                             <div>
                                                 <button id="payment-button" name="btn" type="submit" class="btn btn-lg btn-info btn-block">
-                                                    <i class="fa fa-sign-in fa-lg"></i>&nbsp;
-                                                    <span id="payment-button-amount">Enregistrer</span>
+                                                    <i class="fa fa-refresh fa-lg"></i>&nbsp;
+                                                    <span id="payment-button-amount">Modifier</span>
                                                     <span id="payment-button-sending" style="display:none;">Sending…</span>
                                                 </button>
                                             </div>
@@ -535,7 +542,7 @@
                                             <thead>
                                                 <th>Désignation</th>
                                                 <th>Catégorie</th>
-                                                <th>Action</th>
+                                               
                                             </thead>
                                             <tbody>
                                                 <%
@@ -548,18 +555,7 @@
                                                 <tr>
                                                     <td><%= compteur+". "+ p.getDesignation() %></td>
                                                     <td><%= p.getCategorie() %></td>
-                                                    <td>
-                                                        <div class="input-group-btn">
-                                                            <div class="btn-group">
-                                                                <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-info btn-sm">Action</button>
-                                                                <div tabindex="-1" aria-hidden="true" role="menu" class="dropdown-menu">
-                                                                    <a href="updatePages/modifMed.jsp?id= <%= p.getIdp() %>&amp;design=<%= p.getDesignation()%>&amp;pvu=<%= p.getPvu()%>&alert=<%= p.getStockAlert()%>&categorie=<%= p.getCategorie() %>" 
-                                                                       class="dropdown-item"><i class="zmdi zmdi-edit"></i>  Modifer</a>
-                                                                     <a href="" class="dropdown-item"><i class="zmdi zmdi-delete"></i>  Supprimer</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
+                         
                                                 </tr>
                                                 <%
                                                     }
@@ -586,24 +582,24 @@
     </div>
 
     <!-- Jquery JS-->
-    <script src="vendor/jquery-3.2.1.min.js"></script>
+    <script src="../vendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
-    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <script src="../vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="../vendor/bootstrap-4.1/bootstrap.min.js"></script>
     <!-- Vendor JS       -->
-    <script src="vendor/slick/slick.min.js">
+    <script src="../vendor/slick/slick.min.js">
     </script>
-    <script src="vendor/wow/wow.min.js"></script>
-    <script src="vendor/animsition/animsition.min.js"></script>
-    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    <script src="../vendor/wow/wow.min.js"></script>
+    <script src="../vendor/animsition/animsition.min.js"></script>
+    <script src="../vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
     </script>
-    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="vendor/counter-up/jquery.counterup.min.js">
+    <script src="../vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="../vendor/counter-up/jquery.counterup.min.js">
     </script>
-    <script src="vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="vendor/select2/select2.min.js">
+    <script src="../vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="../vendor/select2/select2.min.js">
     </script>
     <script type="text/javascript">
         (function(document) {
@@ -645,6 +641,6 @@
     })(document);
     </script>
     <!-- Main JS-->
-    <script src="js/main.js"></script>
+    <script src="../js/main.js"></script>
     </body>
 </html>
