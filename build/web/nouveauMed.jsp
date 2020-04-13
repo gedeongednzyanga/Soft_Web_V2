@@ -553,7 +553,7 @@
                                                             <div class="btn-group">
                                                                 <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-info btn-sm">Action</button>
                                                                 <div tabindex="-1" aria-hidden="true" role="menu" class="dropdown-menu">
-                                                                    <a href="updatePages/modifMed.jsp?id= <%= p.getIdp() %>&amp;design=<%= p.getDesignation()%>&amp;pvu=<%= p.getPvu()%>&alert=<%= p.getStockAlert()%>&categorie=<%= p.getCategorie() %>" 
+                                                                    <a href="updatePages/modifMed.jsp?id=<%= p.getIdp()%>&amp;design=<%= p.getDesignation()%>&amp;pvu=<%= p.getPvu()%>&alert=<%= p.getStockAlert()%>&categorie=<%= p.getCategorie() %>" 
                                                                        class="dropdown-item"><i class="zmdi zmdi-edit"></i>  Modifer</a>
                                                                      <a href="" class="dropdown-item"><i class="zmdi zmdi-delete"></i>  Supprimer</a>
                                                                 </div>

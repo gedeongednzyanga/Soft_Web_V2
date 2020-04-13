@@ -42,11 +42,12 @@
         DAOProduit daop = new DAOProduit ();
         DAOCategorie datacat = new DAOCategorie();
         List <produit> data = new ArrayList<>();
-        List <produit> datac = new ArrayList<>(); 
-        String id = request.getParameter("id");
-        String design = request.getParameter("design") ;
-        String pvu = request.getParameter("pvu");
-        String alert = request.getParameter("alert");
+        List <produit> datac = new ArrayList<>();
+        
+        String id =(request.getParameter("id"));
+        String design = request.getParameter("design");
+        float pvu = Float.parseFloat(request.getParameter("pvu")) ;
+        int alert = Integer.parseInt(request.getParameter("alert")) ;
         
     %>
 <body class="animsition">
@@ -486,28 +487,26 @@
                                             <h3 class="text-center title-2">Modifier Produit</h3>
                                         </div>
                                         <hr>
-                                        <form action="../servProduit" method="post" novalidate="novalidate">
-                                            <div class="form-group">
-                                                <input class="form-control" type="hidden" name="action" value="2">
-                                                <input class="form-control" type="hidden" name="id" value="<%= id %>">
-                                            </div>
+                                         <form action="../servProduit" method="POST" novalidate="novalidate">
+                                            <input class="form-control" type="hidden" name="action" value="2">
+                                            <input class="form-control" type="hidden" name="id" value="<%= id %>">
                                             <div class="form-group">
                                                 <label for="produit" class="control-label mb-1">Désignation</label>
-                                                <input id="cc-pament" name="produit" type="text" autocomplete="off" value="<%= design  %>" class="form-control" aria-required="true" aria-invalid="false">
+                                                <input id="cc-pament" name="produit" type="text" value="<%= design%>" autocomplete="off" class="form-control" aria-required="true" aria-invalid="false">
                                             </div>
                                             <div class="form-group has-success">
                                                 <label for="cc-name" class="control-label mb-1">P.U Vente</label>
-                                                <input id="cc-name" name="pvu" type="number" autocomplete="off" value="<%= pvu %>" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
-                                                <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                                                <input id="cc-name" name="pvu" type="number" value="<%= pvu%>" autocomplete="off" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card" autocomplete="<%= pvu %>cc-name" aria-r<%= pvu %>equired="true" aria-invalipvud="false" aria-describedby="cc-name-error">
+                                                <span class="help-block field-validation-valid" data-valmsg-for="pvu" data-valmsg-replace="true"></span>
                                             </div>
                                             <div class="form-group">
                                                 <label for="alert" class="control-label mb-1">Stock Alert</label>
-                                                <input id="cc-number" name="alert" type="number" autocomplete="off" value="<%= alert %>"  class="form-control cc-number identified visa" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
+                                                <input id="cc-number" name="alert" type="number" value="<%= alert%>"  autocomplete="off" class="form-control cc-number identified visa" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
                                                 <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
                                             </div>
-                                            <div class="form-group">
+                                             <div class="form-group">
                                                  <label for="categorie" class="control-label mb-1">Catégorie</label>
-                                                <select class="form-control" name="catego" id="categorie">
+                                                <select class="form-control" name="catego" id="">
                                                     <%
                                                         datac = datacat.Load();
                                                         for(produit cat : datac){
@@ -520,8 +519,8 @@
                                             </div>
                                             <div>
                                                 <button id="payment-button" name="btn" type="submit" class="btn btn-lg btn-info btn-block">
-                                                    <i class="fa fa-refresh fa-lg"></i>&nbsp;
-                                                    <span id="payment-button-amount">Modifier</span>
+                                                    <i class="fa fa-sign-in fa-lg"></i>&nbsp;
+                                                    <span id="payment-button-amount">Enregistrer</span>
                                                     <span id="payment-button-sending" style="display:none;">Sending…</span>
                                                 </button>
                                             </div>
