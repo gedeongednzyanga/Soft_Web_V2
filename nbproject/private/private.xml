@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/Soft_Web_V2/src/java/controller/servProduit.java</file>
-            <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/Soft_Web_V2/web/js/main.js</file>
-            <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/Soft_Web_V2/web/updatePages/modifMed.jsp</file>
+            <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/Soft_Web_V2/web/adminAccueil.jsp</file>
+            <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/Soft_Web_V2/web/chercherClient.jsp</file>
             <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/Soft_Web_V2/web/index.jsp</file>
+            <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/Soft_Web_V2/web/nouveauAchat.jsp</file>
             <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/Soft_Web_V2/web/nouveauMed.jsp</file>
+            <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/Soft_Web_V2/web/nouveauSorti.jsp</file>
         </group>
     </open-files>
 </project-private>
