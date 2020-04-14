@@ -36,7 +36,7 @@
 
     <!-- Main CSS-->
     <link href="../css/theme.css" rel="stylesheet" media="all">
-
+    <link href="../css/style.css" rel="stylesheet" type="text/css"/>
 </head>
     <%
         DAOProduit daop = new DAOProduit ();
@@ -57,7 +57,7 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.jsp">
+                        <a class="logo" href="../adminAccueil.jsp">
                             <img src="../images/icon/logo.png" alt="CoolAdmin" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
@@ -172,7 +172,7 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="#">
+                <a href="../adminAccueil.jsp">
                     <img src="../images/icon/logo.png" alt="Cool Admin" />
                 </a>
             </div>
@@ -180,7 +180,7 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
-                            <a href="adminAccueil.jsp">
+                            <a href="../adminAccueil.jsp">
                                 <i class="fas fa-home"></i>Accueil</a>
                         </li>
                         <li>
@@ -307,7 +307,7 @@
                     <div class="container-fluid">
                         <div class="header-wrap">
                             <form class="form-header" action="" method="POST">
-                                <input class="au-input au-input--xl" type="text" name="search" data-table="customers-list" placeholder="Rechercher..." />
+                                <input class="au-input au-input--xl search-input" type="search" autocomplete="off" name="search" data-table="customers-list" placeholder="Rechercher..." />
                                 <button class="au-btn--submit" type="submit">
                                     <i class="zmdi zmdi-search"></i>
                                 </button>
@@ -536,12 +536,12 @@
                                     </div>
                                     <div class="card-body card-block">
                                         
-                                       <div class="table-responsive">
+                                       <div class="table-responsive" id="table-liste">
                                         <table class="table table-top-campaign customers-list">
                                             <thead>
                                                 <th>Désignation</th>
                                                 <th>Catégorie</th>
-                                               
+                                                <th>Action</th>
                                             </thead>
                                             <tbody>
                                                 <%
@@ -554,7 +554,18 @@
                                                 <tr>
                                                     <td><%= compteur+". "+ p.getDesignation() %></td>
                                                     <td><%= p.getCategorie() %></td>
-                         
+                                                    <td>
+                                                        <div class="input-group-btn">
+                                                            <div class="btn-group">
+                                                                <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-info btn-sm">Action</button>
+                                                                <div tabindex="-1" aria-hidden="true" role="menu" class="dropdown-menu">
+                                                                    <a href="modifMed.jsp?id=<%= p.getIdp()%>&amp;design=<%= p.getDesignation()%>&amp;pvu=<%= p.getPvu()%>&alert=<%= p.getStockAlert()%>&categorie=<%= p.getCategorie() %>" 
+                                                                       class="dropdown-item"><i class="zmdi zmdi-edit"></i>  Modifer</a>
+                                                                       <a href="" class="dropdown-item"><i class="zmdi zmdi-delete"></i>  Supprimer</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                                 <%
                                                     }
@@ -566,13 +577,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
-                                </div>
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
             </div>

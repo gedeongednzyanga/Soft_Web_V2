@@ -36,7 +36,7 @@
 
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
-
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
 </head>
     <%
         DAOProduit daop = new DAOProduit ();
@@ -301,7 +301,7 @@
                     <div class="container-fluid">
                         <div class="header-wrap">
                             <form class="form-header" action="" method="POST">
-                                <input class="au-input au-input--xl" type="text" name="search" data-table="customers-list" placeholder="Rechercher..." />
+                                <input type="search" class="au-input au-input--xl search-input" autocomplete="off" name="search" data-table="customers-list" placeholder="Rechercher..." />
                                 <button class="au-btn--submit" type="submit">
                                     <i class="zmdi zmdi-search"></i>
                                 </button>
@@ -527,10 +527,10 @@
                                     <div class="card-header">
                                         <strong>Médicaments</strong>
                                         <small>/Liste</small>
+                                        <span class="pull-right"><a href="listMed.jsp" class="btn btn-light">Voir Plus</a></span>
                                     </div>
                                     <div class="card-body card-block">
-                                        
-                                       <div class="table-responsive">
+                                       <div class="table-responsive" id="table-liste">
                                         <table class="table table-top-campaign customers-list">
                                             <thead>
                                                 <th>Désignation</th>
@@ -545,6 +545,7 @@
                                                     for (produit p : data){
                                                         compteur ++;
                                                 %>
+                                                
                                                 <tr>
                                                     <td><%= compteur+". "+ p.getDesignation() %></td>
                                                     <td><%= p.getCategorie() %></td>
@@ -568,13 +569,6 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
                                 </div>
                             </div>
                         </div>
@@ -604,45 +598,6 @@
     <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
     <script src="vendor/chartjs/Chart.bundle.min.js"></script>
     <script src="vendor/select2/select2.min.js">
-    </script>
-    <script type="text/javascript">
-        (function(document) {
-        'use strict';
-
-        var TableFilter = (function(myArray) {
-            var search_input;
-
-            function _onInputSearch(e) {
-                search_input = e.target;
-                var tables = document.getElementsByClassName(search_input.getAttribute('data-table'));
-                myArray.forEach.call(tables, function(table) {
-                    myArray.forEach.call(table.tBodies, function(tbody) {
-                        myArray.forEach.call(tbody.rows, function(row) {
-                            var text_content = row.textContent.toLowerCase();
-                            var search_val = search_input.value.toLowerCase();
-                            row.style.display = text_content.indexOf(search_val) > -1 ? '' : 'none';
-                        });
-                    });
-                });
-            }
-
-            return {
-                init: function() {
-                    var inputs = document.getElementsByClassName('search-input');
-                    myArray.forEach.call(inputs, function(input) {
-                        input.oninput = _onInputSearch;
-                    });
-                }
-            };
-        })(Array.prototype);
-
-        document.addEventListener('readystatechange', function() {
-            if (document.readyState === 'complete') {
-                TableFilter.init();
-            }
-        });
-
-    })(document);
     </script>
     <!-- Main JS-->
     <script src="js/main.js"></script>

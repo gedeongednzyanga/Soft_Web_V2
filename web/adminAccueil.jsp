@@ -174,13 +174,13 @@
                                     <a href="nouveauMed.jsp">Nouveau</a>
                                 </li>
                                 <li>
-                                    <a href="index2.html">Entrée en Stock</a>
+                                    <a href="">Entrée en Stock</a>
                                 </li>
                                 <li>
                                     <a href="index3.html">Sortie en Stock</a>
                                 </li>
                                 <li>
-                                    <a href="index4.html">Stock Méd.</a>
+                                    <a href="stockMed.jsp">Stock Méd.</a>
                                 </li>
                             </ul>
                         </li>

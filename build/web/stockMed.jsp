@@ -1,25 +1,24 @@
 <%-- 
-    Document   : nouveauMed
-    Created on : 11 avr. 2020, 12:33:12
+    Document   : listMed
+    Created on : 14 avr. 2020, 10:38:19
     Author     : GEDEON
 --%>
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="model.DAOCategorie"%>
-<%@page import="model.DAOProduit"%>
 <%@page import="view.produit"%>
+<%@page import="model.DAOProduit"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Forms</title>
+        <title>Tables</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
     <!-- Bootstrap CSS-->
@@ -36,14 +35,13 @@
 
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
-    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+
 </head>
     <%
         DAOProduit daop = new DAOProduit ();
-        DAOCategorie datacat = new DAOCategorie();
-        List <produit> data = new ArrayList<>();
-        List <produit> datac = new ArrayList<>();           
+        List <produit> data = new ArrayList<>();          
     %>
+
 <body class="animsition">
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
@@ -164,7 +162,7 @@
         <!-- END HEADER MOBILE-->
 
         <!-- MENU SIDEBAR-->
-        <aside class="menu-sidebar d-none d-lg-block">
+      <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
                     <img src="images/icon/logo.png" alt="Cool Admin" />
@@ -301,7 +299,7 @@
                     <div class="container-fluid">
                         <div class="header-wrap">
                             <form class="form-header" action="" method="POST">
-                                <input type="search" class="au-input au-input--xl search-input" autocomplete="off" name="search" data-table="customers-list" placeholder="Rechercher..." />
+                                <input type="search" class="au-input au-input--xl search-input" autocomplete="off" name="search" data-table="customers-list"name="search" placeholder="Rechercher..." />
                                 <button class="au-btn--submit" type="submit">
                                     <i class="zmdi zmdi-search"></i>
                                 </button>
@@ -419,7 +417,7 @@
                                         </div>
                                     </div>
                                 </div>
-                               <div class="account-wrap">
+                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
                                             <img src="images/icon/avatar-01.jpg" alt="John Doe" />
@@ -462,116 +460,114 @@
                     </div>
                 </div>
             </header>
-            <!-- HEADER DESKTOP-->
+            <!-- END HEADER DESKTOP-->
 
             <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-lg-6">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <strong>Médicament</strong>
-                                         <small>/Nouveau</small>
-                                    </div>
-                                   
-                                    <div class="card-body">
-                                        <div class="card-title">
-                                            <h3 class="text-center title-2">Nouveau Produit</h3>
+                            <div class="col-md-12">
+                                <!-- DATA TABLE -->
+                                <h3 class="title-5 m-b-35">Stock Médicaments</h3>
+                                <div class="table-data__tool">
+                                    <div class="table-data__tool-left">
+                                        <div class="rs-select2--light rs-select2--md">
+                                            <select class="js-select2" name="property">
+                                                <option selected="selected">Afficher Tous</option>
+                                                <option value="">Option 1</option>
+                                                <option value="">Option 2</option>
+                                            </select>
+                                            <div class="dropDownSelect2"></div>
                                         </div>
-                                        <hr>
-                                        <form action="servProduit" method="POST" novalidate="novalidate">
-                                            <input class="form-control" type="hidden" name="action" value="1">
-                                            <input class="form-control" type="hidden" name="id" value="0">
-                                            <div class="form-group">
-                                                <label for="produit" class="control-label mb-1">Désignation</label>
-                                                <input id="cc-pament" name="produit" type="text" autocomplete="off" class="form-control" aria-required="true" aria-invalid="false">
-                                            </div>
-                                            <div class="form-group has-success">
-                                                <label for="cc-name" class="control-label mb-1">P.U Vente</label>
-                                                <input id="cc-name" name="pvu" type="number" autocomplete="off" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
-                                                <span class="help-block field-validation-valid" data-valmsg-for="pvu" data-valmsg-replace="true"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="alert" class="control-label mb-1">Stock Alert</label>
-                                                <input id="cc-number" name="alert" type="number" autocomplete="off" class="form-control cc-number identified visa" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
-                                                <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
-                                            </div>
-                                             <div class="form-group">
-                                                 <label for="categorie" class="control-label mb-1">Catégorie</label>
-                                                <select class="form-control" name="catego" id="">
-                                                    <%
-                                                        datac = datacat.Load();
-                                                        for(produit cat : datac){
-                                                    %>
-                                                        <option value="<%= cat.getIdcat()%>"><%= cat.getCategorie() %></option>
-                                                    <%
-                                                        }
-                                                    %>
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <button id="payment-button" name="btn" type="submit" class="btn btn-lg btn-info btn-block">
-                                                    <i class="fa fa-sign-in fa-lg"></i>&nbsp;
-                                                    <span id="payment-button-amount">Enregistrer</span>
-                                                    <span id="payment-button-sending" style="display:none;">Sending…</span>
-                                                </button>
-                                            </div>
-                                        </form>
+                                        
+                                        <button class="au-btn-filter">
+                                            <i class="zmdi zmdi-filter-list"></i>Trier</button>
+                                    </div>
+                                    <div class="table-data__tool-right">
+                                        <button class="au-btn au-btn-icon au-btn--blue au-btn--small">
+                                            <i class="zmdi zmdi-print"></i>Imprimer</button>
+                                        <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
+                                            <select class="js-select2" name="type">
+                                                <option selected="selected">Exporter</option>
+                                                <option value="">Option 1</option>
+                                                <option value="">Option 2</option>
+                                            </select>
+                                            <div class="dropDownSelect2"></div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <strong>Médicaments</strong>
-                                        <small>/Liste</small>
-                                        <span class="pull-right"><a href="listMed.jsp" class="btn btn-light">Voir Plus</a></span>
-                                    </div>
-                                    <div class="card-body card-block">
-                                       <div class="table-responsive" id="table-liste">
-                                        <table class="table table-top-campaign customers-list">
-                                            <thead>
-                                                <th>Désignation</th>
-                                                <th>Catégorie</th>
-                                                <th>Action</th>
-                                            </thead>
-                                            <tbody>
-                                                <%
-                                                    int compteur;
-                                                    compteur = 0;
-                                                    data = daop.Load();
-                                                    for (produit p : data){
-                                                        compteur ++;
-                                                %>
-                                                
-                                                <tr>
-                                                    <td><%= compteur+". "+ p.getDesignation() %></td>
-                                                    <td><%= p.getCategorie() %></td>
-                                                    <td>
-                                                        <div class="input-group-btn">
-                                                            <div class="btn-group">
-                                                                <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-info btn-sm">Action</button>
-                                                                <div tabindex="-1" aria-hidden="true" role="menu" class="dropdown-menu">
-                                                                    <a href="updatePages/modifMed.jsp?id=<%= p.getIdp()%>&amp;design=<%= p.getDesignation()%>&amp;pvu=<%= p.getPvu()%>&alert=<%= p.getStockAlert()%>&categorie=<%= p.getCategorie() %>" 
-                                                                       class="dropdown-item"><i class="zmdi zmdi-edit"></i>  Modifer</a>
-                                                                     <a href="" class="dropdown-item"><i class="zmdi zmdi-delete"></i>  Supprimer</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <%
-                                                    }
-                                                %>
-                                               
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                                <!-- END DATA TABLE -->
                             </div>
                         </div>
+                        <div class="row m-t-30">
+                            <div class="col-md-12">
+                                <!-- DATA TABLE-->
+                                <div class="table-responsive m-b-40">
+                                    <table class="table table-borderless table-data3 customers-list">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Médicament</th>
+                                                <th>Catégorie</th>
+                                                <th>Stock</th>
+                                                <th>S. Alerte</th>
+                                                <th>Date fab.</th>
+                                                <th>Date expi.</th>
+                                                <th>Alerte</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <%
+                                            data = daop.Load_Stock();
+                                            for (produit p : data){
+                                        %>
+                                        <tr>
+                                            <td> <%= p.getIdp() %> </td>
+                                            <td> <%= p.getDesignation() %> </td>
+                                            <td> <%= p.getCategorie() %> </td>
+                                            
+                                            <% 
+                                                if (p.getStock() < p.getStockAlert()){ %>
+                                                <td class="denied" title="Stock Insufisant"> <%= p.getStock()%> </td>
+                                            <%
+                                                }else{
+                                            %>
+                                              <td class="process"> <%= p.getStock()%> </td>
+                                            <%
+                                               }
+                                            %>
+                                            <td class="text-center"> <%= p.getStockAlert()%> </td>
+                                            <td class="text-center"> <%= p.getFabrication()%> </td>
+                                            <td class="text-center"> <%= p.getExpiration()%> </td>
+                                            <% 
+                                                if (p.getStock() < p.getStockAlert()){ %>
+                                                <td class="text-center">
+                                                    <span class="status--denied">Mauvais</span>
+                                                </td>
+                                            <%
+                                                }else{
+                                            %>
+                                              <td class="text-center process">
+                                                    <span class="process">Super</span>
+                                              </td>
+                                            <%
+                                               }
+                                            %>
+                                             
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- END DATA TABLE-->
+                            </div>
+                        </div>
+                       
                     </div>
                 </div>
             </div>
@@ -599,7 +595,10 @@
     <script src="vendor/chartjs/Chart.bundle.min.js"></script>
     <script src="vendor/select2/select2.min.js">
     </script>
+
     <!-- Main JS-->
     <script src="js/main.js"></script>
-    </body>
+
+</body>
+
 </html>
