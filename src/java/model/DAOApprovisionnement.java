@@ -7,13 +7,34 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
 import view.approvisionnement;
 
 
 public class DAOApprovisionnement implements Operations {
     
     Database db = new Database();
+    
+    public int getIdProduit(String designation){
+        int idp = 0;
+        Connection conn;
+        PreparedStatement ps;
+        ResultSet rs;
+        String requete = "SELECT ida FROM tbl_article WHERE designation = '"+designation+"' ";
+        try{
+            conn = db.dbConnect();
+            ps = conn.prepareStatement(requete);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                idp = Integer.parseInt(rs.getString("ida"));
+            }
+            conn.close();
+            rs.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return idp;
+    }
+    
     @Override
     public void Insert(Object obj) {
         approvisionnement a = (approvisionnement) obj;

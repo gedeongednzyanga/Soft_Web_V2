@@ -35,11 +35,11 @@ public class servApprovisionnement extends HttpServlet {
                    a.setPua(Double.parseDouble(request.getParameter("pua")));
                    a.setFabrication(request.getParameter("fabication"));
                    a.setExpiration(request.getParameter("expiration"));
-                   a.setIdp(Integer.parseInt(request.getParameter("produit")));
+                   a.setIdp(approv.getIdProduit(request.getParameter("produit")));
                    a.setFournisseur(Integer.parseInt(request.getParameter("fournisseur")));
                    approv.Insert(a);
                }
-               rd = request.getRequestDispatcher("approvisionnement.jsp");
+               rd = request.getRequestDispatcher("nouveauAchat.jsp");
            }catch(Exception e){
                
            }

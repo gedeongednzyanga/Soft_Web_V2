@@ -4,6 +4,8 @@
     Author     : GEDEON
 --%>
 
+<%@page import="view.fournisseur"%>
+<%@page import="model.DAOFournisseur"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="model.DAOCategorie"%>
@@ -40,9 +42,9 @@
 </head>
     <%
         DAOProduit daop = new DAOProduit ();
-        DAOCategorie datacat = new DAOCategorie();
+        DAOFournisseur daof = new DAOFournisseur();
         List <produit> data = new ArrayList<>();
-        List <produit> datac = new ArrayList<>();           
+        List <fournisseur> dataf = new ArrayList<>();    
     %>
 <body class="animsition">
     <div class="page-wrapper">
@@ -481,48 +483,58 @@
                                             <h3 class="text-center title-2">Entrée En Stock</h3>
                                         </div>
                                         <hr>
-                                        <form action="servProduit" method="POST" novalidate="novalidate">
+                                        <form action="servApprovisionnement" method="POST" novalidate="novalidate">
                                             <input class="form-control" type="hidden" name="action" value="1">
                                             <input class="form-control" type="hidden" name="id" value="0">
                                             <div class="form-group">
                                                 <label for="produit" class="control-label mb-1">Médicament</label>
                                                 <small class="pull-right"><a href="nouveauMed.jsp" class="btn-success">Nouveau Méd.</a></small>
-                                                <input id="cc-pament" name="produit" type="text" autocomplete="off" class="form-control" aria-required="true" aria-invalid="false">
+                                                <input id="cc-pament" list="produit" name="produit" id="produit" autocomplete="off" type="text"  class="form-control" aria-required="true" aria-invalid="false">
+                                                <datalist id="produit">
+                                                    <%
+                                                        data = daop.Load();
+                                                        for(produit p : data){
+                                                    %>
+                                                    <option value="<%= p.getDesignation() %>">
+                                                    <%
+                                                        }
+                                                    %>
+                                                </datalist>
                                             </div>
                                             <div class="form-group has-success">
                                                 <label for="cc-name" class="control-label mb-1">Quantité</label>
-                                                <input id="cc-name" name="pvu" type="number" autocomplete="off" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
+                                                <input id="cc-name" name="quantite" type="number" autocomplete="off" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
                                                 <span class="help-block field-validation-valid" data-valmsg-for="pvu" data-valmsg-replace="true"></span>
                                             </div>
                                             <div class="form-group">
                                                 <label for="alert" class="control-label mb-1">P.U Achat</label>
-                                                <input id="cc-number" name="alert" type="number" autocomplete="off" class="form-control cc-number identified visa" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
+                                                <input id="cc-number" name="pua" type="number" autocomplete="off" class="form-control cc-number identified visa" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
                                                 <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="alert" class="control-label mb-1">D. Fabrication</label>
-                                                        <input id="cc-number" name="alert" type="date" autocomplete="off" class="form-control cc-number identified visa" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
+                                                        <input id="cc-number" name="fabication" type="date" autocomplete="off" class="form-control cc-number identified visa" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
                                                         <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="alert" class="control-label mb-1">D. Expiration</label>
-                                                        <input id="cc-number" name="alert" type="date" autocomplete="off" class="form-control cc-number identified visa" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
+                                                        <input id="cc-number" name="expiration" type="date" autocomplete="off" class="form-control cc-number identified visa" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
                                                         <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
                                                     </div>
                                                 </div>
                                             </div>
                                              <div class="form-group">
-                                                 <label for="categorie" class="control-label mb-1">Fournisseur</label>
-                                                <select class="form-control" name="catego" id="">
+                                                 <label for="fournisseur" class="control-label mb-1">Fournisseur</label>
+                                                <select class="form-control" name="fournisseur" id="fournisseur">
                                                     <%
-                                                        datac = datacat.Load();
-                                                        for(produit cat : datac){
+                                                        dataf = daof.Get_Fournisseur();
+                                                        for(fournisseur fourni : dataf){
                                                     %>
-                                                        <option value="<%= cat.getIdcat()%>"><%= cat.getCategorie() %></option>
+                                                        <option value="<%= fourni.getIdf()%>"><%= fourni.getFourni()%></option>
                                                     <%
                                                         }
                                                     %>
@@ -618,5 +630,15 @@
     </script>
     <!-- Main JS-->
     <script src="js/main.js"></script>
+    <script>
+        var list = [
+            'Paraceta',
+            'Paladonta' ];
+        $(function(){
+            $("#produit").autocomplete({
+                source : list;
+            });
+        });
+    </script>
     </body>
 </html>
