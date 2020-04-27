@@ -4,6 +4,8 @@
     Author     : GEDEON
 --%>
 
+<%@page import="model.DAOApprovisionnement"%>
+<%@page import="view.approvisionnement"%>
 <%@page import="view.fournisseur"%>
 <%@page import="model.DAOFournisseur"%>
 <%@page import="java.util.ArrayList"%>
@@ -44,7 +46,9 @@
         DAOProduit daop = new DAOProduit ();
         DAOFournisseur daof = new DAOFournisseur();
         List <produit> data = new ArrayList<>();
-        List <fournisseur> dataf = new ArrayList<>();    
+        List <fournisseur> dataf = new ArrayList<>();
+        DAOApprovisionnement daoa = new DAOApprovisionnement ();
+        List <approvisionnement> dataap = new ArrayList<>();
     %>
 <body class="animsition">
     <div class="page-wrapper">
@@ -563,27 +567,27 @@
                                         <table class="table table-top-campaign customers-list">
                                             <thead>
                                                 <th>Désignation</th>
-                                                <th>Catégorie</th>
+                                                <th>Quantité</th>
                                                 <th>Action</th>
                                             </thead>
                                             <tbody>
                                                 <%
                                                     int compteur;
                                                     compteur = 0;
-                                                    data = daop.Load();
-                                                    for (produit p : data){
-                                                        compteur ++;
+                                                    dataap = daoa.Load();
+                                                    for (approvisionnement a : dataap){
+                                                    compteur ++;
                                                 %>
                                                 
                                                 <tr>
-                                                    <td><%= compteur+". "+ p.getDesignation() %></td>
-                                                    <td><%= p.getCategorie() %></td>
+                                                    <td><%= compteur+". "+ a.getDesignation() %></td>
+                                                    <td><%= a.getQuantite() %></td>
                                                     <td>
                                                         <div class="input-group-btn">
                                                             <div class="btn-group">
                                                                 <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-info btn-sm">Action</button>
                                                                 <div tabindex="-1" aria-hidden="true" role="menu" class="dropdown-menu">
-                                                                    <a href="updatePages/modifMed.jsp?id=<%= p.getIdp()%>&amp;design=<%= p.getDesignation()%>&amp;pvu=<%= p.getPvu()%>&alert=<%= p.getStockAlert()%>&categorie=<%= p.getCategorie() %>" 
+                                                                    <a href="updatePages/modifMed.jsp?id=<%= a.getId() %>&amp;design=<%= a.getDesignation()%>&amp;pvu=<%= a.getPua() %>" 
                                                                        class="dropdown-item"><i class="zmdi zmdi-edit"></i>  Modifer</a>
                                                                      <a href="" class="dropdown-item"><i class="zmdi zmdi-delete"></i>  Supprimer</a>
                                                                 </div>

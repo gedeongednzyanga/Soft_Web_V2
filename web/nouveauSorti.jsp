@@ -491,7 +491,17 @@
                                             <input class="form-control" type="hidden" name="id" value="0">
                                             <div class="form-group">
                                                 <label for="produit" class="control-label mb-1">Médicament</label>
-                                                <input id="cc-pament" name="produit" type="text" autocomplete="off" class="form-control" aria-required="true" aria-invalid="false">
+                                                 <input id="cc-pament" list="produit" name="produit" id="produit" autocomplete="off" type="text"  class="form-control" aria-required="true" aria-invalid="false">
+                                                <datalist id="produit">
+                                                    <%
+                                                        data = daop.Load();
+                                                        for(produit p : data){
+                                                    %>
+                                                    <option value="<%= p.getDesignation() %>">
+                                                    <%
+                                                        }
+                                                    %>
+                                                </datalist>
                                             </div>
                                             <div class="form-group has-success">
                                                 <label for="cc-name" class="control-label mb-1">Quantité</label>
