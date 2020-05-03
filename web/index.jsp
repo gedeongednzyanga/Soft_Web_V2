@@ -68,8 +68,8 @@
                             </form>
                             <div class="register-link">
                                 <p>
-                                    Don't you have account?
-                                    <a href="#">Sign Up Here</a>
+                                    Pas de compte ?
+                                    <a href="#">Creér un compte</a>
                                 </p>
                             </div>
                         </div>

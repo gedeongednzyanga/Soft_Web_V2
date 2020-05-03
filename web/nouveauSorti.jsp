@@ -4,6 +4,8 @@
     Author     : GEDEON
 --%>
 
+<%@page import="view.sortie"%>
+<%@page import="model.DAOVente"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="model.DAOCategorie"%>
@@ -39,13 +41,15 @@
     <link href="css/style.css" rel="stylesheet" type="text/css"/>
 </head>
     <%
-        int id = Integer.parseInt(request.getParameter("id"));
-        String client = request.getParameter("noms");
         
+        int id = Integer.parseInt(session.getAttribute("id").toString());
+        String client = session.getAttribute("client").toString();
         DAOProduit daop = new DAOProduit ();
-        DAOCategorie datacat = new DAOCategorie();
-        List <produit> data = new ArrayList<>();
-        List <produit> datac = new ArrayList<>();           
+        List <produit> data = new ArrayList<>(); 
+        DAOVente daoS = new DAOVente ();
+        List <sortie> dataS = new ArrayList<>();
+        int compteur = 0;
+        
     %>
 <body class="animsition">
     <div class="page-wrapper">
@@ -486,9 +490,9 @@
                                             
                                         </div>
                                         <hr>
-                                        <form action="servProduit" method="POST" novalidate="novalidate">
+                                        <form action="servDetailVente" method="POST" novalidate="novalidate">
                                             <input class="form-control" type="hidden" name="action" value="1">
-                                            <input class="form-control" type="hidden" name="id" value="0">
+                                            <input class="form-control" type="hidden" name="iddetal" value="0">
                                             <div class="form-group">
                                                 <label for="produit" class="control-label mb-1">Médicament</label>
                                                  <input id="cc-pament" list="produit" name="produit" id="produit" autocomplete="off" type="text"  class="form-control" aria-required="true" aria-invalid="false">
@@ -505,45 +509,17 @@
                                             </div>
                                             <div class="form-group has-success">
                                                 <label for="cc-name" class="control-label mb-1">Quantité</label>
-                                                <input id="cc-name" name="pvu" type="number" autocomplete="off" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
+                                                <input id="cc-name" name="quantite" type="number" autocomplete="off" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
                                                 <span class="help-block field-validation-valid" data-valmsg-for="pvu" data-valmsg-replace="true"></span>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="alert" class="control-label mb-1">P.U Achat</label>
+                                            <!--<div class="form-group">
+                                                <label for="alert" class="control-label mb-1">P.U Vente</label>
                                                 <input id="cc-number" name="alert" type="number" autocomplete="off" class="form-control cc-number identified visa" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
                                                 <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="alert" class="control-label mb-1">D. Fabrication</label>
-                                                        <input id="cc-number" name="alert" type="date" autocomplete="off" class="form-control cc-number identified visa" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
-                                                        <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="alert" class="control-label mb-1">D. Expiration</label>
-                                                        <input id="cc-number" name="alert" type="date" autocomplete="off" class="form-control cc-number identified visa" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
-                                                        <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                             <div class="form-group">
-                                                 <label for="categorie" class="control-label mb-1">Fournisseur</label>
-                                                <select class="form-control" name="catego" id="">
-                                                    <%
-                                                        datac = datacat.Load();
-                                                        for(produit cat : datac){
-                                                    %>
-                                                        <option value="<%= cat.getIdcat()%>"><%= cat.getCategorie() %></option>
-                                                    <%
-                                                        }
-                                                    %>
-                                                </select>
-                                            </div>
+                                            </div>-->
+                                           
                                             <div>
-                                                <button id="payment-button" name="btn" type="submit" class="btn btn-lg btn-info btn-block">
+                                                <button id="payment-button" name="btnD" type="submit" class="btn btn-lg btn-info btn-block">
                                                     <i class="fa fa-sign-in fa-lg"></i>&nbsp;
                                                     <span id="payment-button-amount">Enregistrer</span>
                                                     <span id="payment-button-sending" style="display:none;">Sending…</span>
@@ -557,60 +533,28 @@
                                 <div class="card">
                                     <div class="card-header">
                                         <strong> <i class="fa fa-product-hunt"></i> Panier de : </strong>
-                                        <span class="process"> <%= client %> </span>
+                                        <span class="process"> <%= client+" "+ id %> </span>
                                     </div>
                                     <div class="card-body card-block">
                                        <div class="table-responsive">
                                         <table class="table table-top-campaign customers-list">
                                             <tbody>
+                                                <%   
+                                                    dataS = daoS.LoadF(id);
+                                                    for (sortie s : dataS){ 
+                                                     compteur ++;
+                                                %>
                                                 <tr>
-                                                    <td>1. Australia</td>
-                                                    <td>$70,261.65</td>
+                                                    <td><%= compteur+". "+s.getProduit() %></td>
+                                                    <td><%= s.getQtev() %></td>
+                                                    <td><%= s.getPvu()%></td>
+                                                    <td><%= s.getPtv()%>$</td>
                                                 </tr>
-                                                <tr>
-                                                    <td>2. United Kingdom</td>
-                                                    <td>$46,399.22</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3. Turkey</td>
-                                                    <td>$35,364.90</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4. Germany</td>
-                                                    <td>$20,366.96</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>5. France</td>
-                                                    <td>$10,366.96</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3. Turkey</td>
-                                                    <td>$35,364.90</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4. Germany</td>
-                                                    <td>$20,366.96</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>5. France</td>
-                                                    <td>$10,366.96</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3. Turkey</td>
-                                                    <td>$35,364.90</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4. Germany</td>
-                                                    <td>$20,366.96</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>5. France</td>
-                                                    <td>$10,366.96</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4. Germany</td>
-                                                    <td>$20,366.96</td>
-                                                </tr>
+                                                
+                                                <%
+                                                     
+                                                  }
+                                                %>    
                                             </tbody>
                                         </table>
                                     </div>

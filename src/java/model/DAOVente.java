@@ -21,6 +21,46 @@ public class DAOVente {
     Database db = new Database();
     Connection conn;
     
+    public int getIdProduit(String designation){
+        int idprod = 0;
+        PreparedStatement ps;
+        ResultSet rs;
+        String requete = "SELECT ida, pus FROM tbl_article where designation = '"+designation+"' ";
+        try{
+            conn = db.dbConnect();
+            ps = conn.prepareStatement(requete);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                idprod = Integer.parseInt(rs.getString("ida"));
+            }
+            conn.close();
+            rs.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return idprod;
+    }
+    
+    public float getPrixProduit(String designation){
+        float prixv =0;
+        PreparedStatement ps;
+        ResultSet rs;
+        String requete = "SELECT pus FROM tbl_article where designation = '"+designation+"' ";
+        try{
+            conn = db.dbConnect();
+            ps = conn.prepareStatement(requete);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                prixv = Float.parseFloat(rs.getString("pus"));
+            }
+            conn.close();
+            rs.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return prixv;
+    }
+    
     public void Insert(Object obj) {
         sortie v = (sortie) obj;
         Connection conn;
@@ -34,7 +74,6 @@ public class DAOVente {
             ps.setInt(2, v.getIdsort());
             ps.setInt(3, v.getIdclient());
             ps.setInt(4, v.getIdart());
-          
             ps.executeQuery();
             
         }catch(Exception e){
@@ -44,9 +83,8 @@ public class DAOVente {
     
     public void InsertD(Object obj) {
         sortie v = (sortie) obj;
-        Connection conn;
         PreparedStatement ps;
-        String requete = "CALL INSERT_UPDATE_DETAIL_VENTE (?,?,?,?,?,?)";
+        String requete = "CALL INSERT_UPDATE_DETAIL_VENTE (?,?,?,?,?)";
         try{
             
             conn = db.dbConnect();
@@ -56,7 +94,7 @@ public class DAOVente {
             ps.setInt(3, v.getIdart());
             ps.setFloat(4, v.getPvu());
             ps.setInt(5, v.getQtev());
-            ps.setInt(6, v.getIdsort());
+           
             ps.executeQuery();
             
         }catch(Exception e){
@@ -85,12 +123,11 @@ public class DAOVente {
          }
          return donnee;
     }
-    public List<sortie> LoadF(int idv) {
+    public List<sortie> LoadF(int idc) {
          List<sortie> donnee = new ArrayList<>();
-         Connection conn;
          PreparedStatement ps;
          ResultSet rs;
-         String requete ="SELECT * FROM `get_detail_vente` WHERE idVente ="+idv+"";
+         String requete ="SELECT * FROM get_detail_vente WHERE date(dateVente) = date(now()) AND codeClient ="+idc+"";
          try{
              conn = db.dbConnect();
              ps = conn.prepareStatement(requete);

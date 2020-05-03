@@ -502,9 +502,15 @@
                                                     <td><%= pat.getPostnom() %></td>
                                                     <td><%= pat.getPrenom() %></td>
                                                     <td>
-
-                                                        <a href="nouveauSorti.jsp?id=<%= pat.getId() %>&amp;noms=<%= pat.getNom()+" "+pat.getPostnom() %>" 
-                                                           class="btn btn-light"><i class="fa fa-hand-pointer"></i>  Choisir</a>
+                                                        <form action="servVente" method="POST">
+                                                            <input type="hidden" name="action" value="1" />
+                                                            <input type="hidden" name="idvente" value="0" />
+                                                            <input type="hidden" name="produit" value="0" />
+                                                            <input type="hidden" name="idPatient" value="<%= pat.getId() %>" />
+                                                            <input type="hidden" name="patient" value="<%= pat.getNom()+" "+pat.getPostnom()%>" />
+                                                            <button type="submit" name="btn" class="btn btn-light"><i class="fa fa-hand-pointer"></i>  Choisir</button>
+                                                        </form>
+                                                        
                                                     </td>
                                                 </tr>
                                                 <%

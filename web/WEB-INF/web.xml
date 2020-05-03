@@ -4,6 +4,10 @@
         <servlet-name>testLogin</servlet-name>
         <servlet-class>controller.servTestLogin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>servDetailVente</servlet-name>
+        <servlet-class>controller.servDetailVente</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>testLogin</servlet-name>
         <url-pattern>/testLogin</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>servVente</servlet-name>
         <url-pattern>/servVente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>servDetailVente</servlet-name>
+        <url-pattern>/servDetailVente</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
