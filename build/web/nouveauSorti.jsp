@@ -481,7 +481,9 @@
                                     <div class="card-header">
                                         <strong>Sortie</strong>
                                          <small>/Médicament</small>
-                                         <span class="pull-right status--denied">Client : <%= client %></span>
+                                         <span class="pull-right status--denied">
+                                             <i class="fa fa-male"></i>
+                                             Client : <%= client %></span>
                                     </div>
                                    
                                     <div class="card-body">
@@ -521,7 +523,7 @@
                                             <div>
                                                 <button id="payment-button" name="btnD" type="submit" class="btn btn-lg btn-info btn-block">
                                                     <i class="fa fa-sign-in fa-lg"></i>&nbsp;
-                                                    <span id="payment-button-amount">Enregistrer</span>
+                                                    <span id="payment-button-amount">Ajouter</span>
                                                     <span id="payment-button-sending" style="display:none;">Sending…</span>
                                                 </button>
                                             </div>
@@ -533,12 +535,22 @@
                                 <div class="card">
                                     <div class="card-header">
                                         <strong> <i class="fa fa-product-hunt"></i> Panier de : </strong>
-                                        <span class="process"> <%= client+" "+ id %> </span>
+                                        <span class="process"> <%= client%> </span>
                                     </div>
                                     <div class="card-body card-block">
                                        <div class="table-responsive">
                                         <table class="table table-top-campaign customers-list">
+                                           
+                                                <tr>
+                                                    <td>Produit</td>
+                                                    <td>Quantité</td>
+                                                    <td class="text-center">PU</td>
+                                                    <td class="text-center">PT</td>
+                                                    <td>#</td>
+                                                </tr>
+                                           
                                             <tbody>
+                                                
                                                 <%   
                                                     dataS = daoS.LoadF(id);
                                                     for (sortie s : dataS){ 
@@ -546,9 +558,21 @@
                                                 %>
                                                 <tr>
                                                     <td><%= compteur+". "+s.getProduit() %></td>
-                                                    <td><%= s.getQtev() %></td>
-                                                    <td><%= s.getPvu()%></td>
-                                                    <td><%= s.getPtv()%>$</td>
+                                                    <td class="text-center"><%= s.getQtev() %></td>
+                                                    <td class="text-center"><%= s.getPvu()%>$</td>
+                                                    <td class="text-center"><%= s.getPtv()%>$</td>
+                                      
+                                                        <form action="servVente" method="POST">
+                                                            <input type="hidden" name="action" value="3">
+                                                            <input type="hidden" name="produit" value="<%= s.getIdart() %>">
+                                                            <input type="hidden" name="iddetal" value="<%= s.getIdd() %>">
+                                                            <input type="hidden" name="pvu" value="<%= s.getPvu() %>">
+                                                            <input type="hidden" name="quantite" value="<%= s.getQtev() %>">
+                                                            <input type="hidden" name="idvente" value="<%= s.getIdsort() %>">
+                                                            <td><button type="submit" name="btnD" class="btn btn-danger btn-sm"><i class="fa fa-remove fa-10x"></i> </button>
+                                                            </td>
+                                                        </form>
+                                                    </td>
                                                 </tr>
                                                 
                                                 <%
@@ -560,12 +584,12 @@
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary btn-sm">
-                                        <i class="fa fa-dot-circle-o"></i> Submit
-                                    </button>
-                                    <button type="reset" class="btn btn-danger btn-sm">
-                                        <i class="fa fa-ban"></i> Reset
-                                    </button>
+                                    <a href="" class="btn btn-warning btn-sm">
+                                        <i class="fa fa-dot-circle-o"></i> Terminer
+                                    </a>
+                                    <a href="" class="btn btn-info btn-sm">
+                                        <i class="fa fa-dot-circle-o"></i> Facture
+                                    </a>
                                 </div>
                             </div>
                         </div>
