@@ -39,6 +39,9 @@
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
     <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    
+    <!-- Style impression -->
+    <link href="css/stylePrint.css" rel="stylesheet" type="text/css" media="print" />
 </head>
     <%
         
@@ -49,6 +52,7 @@
         DAOVente daoS = new DAOVente ();
         List <sortie> dataS = new ArrayList<>();
         int compteur = 0;
+        float prixTotal = 0;
         
     %>
 <body class="animsition">
@@ -476,7 +480,7 @@
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-6" id="formclient">
                                 <div class="card">
                                     <div class="card-header">
                                         <strong>Sortie</strong>
@@ -546,15 +550,17 @@
                                                     <td>Quantité</td>
                                                     <td class="text-center">PU</td>
                                                     <td class="text-center">PT</td>
-                                                    <td>#</td>
+                                                    <td id="action">#</td>
                                                 </tr>
                                            
                                             <tbody>
                                                 
                                                 <%   
+                                                    
                                                     dataS = daoS.LoadF(id);
                                                     for (sortie s : dataS){ 
                                                      compteur ++;
+                                                     prixTotal += s.getPtv();
                                                 %>
                                                 <tr>
                                                     <td><%= compteur+". "+s.getProduit() %></td>
@@ -569,7 +575,7 @@
                                                             <input type="hidden" name="pvu" value="<%= s.getPvu() %>">
                                                             <input type="hidden" name="quantite" value="<%= s.getQtev() %>">
                                                             <input type="hidden" name="idvente" value="<%= s.getIdsort() %>">
-                                                            <td><button type="submit" name="btnD" class="btn btn-danger btn-sm"><i class="fa fa-remove fa-10x"></i> </button>
+                                                            <td id="action"><button type="submit" name="btnD" class="btn btn-danger btn-sm"><i class="fa fa-remove fa-10x"></i> </button>
                                                             </td>
                                                         </form>
                                                     </td>
@@ -587,9 +593,10 @@
                                     <a href="" class="btn btn-warning btn-sm">
                                         <i class="fa fa-dot-circle-o"></i> Terminer
                                     </a>
-                                    <a href="" class="btn btn-info btn-sm">
+                                    <a href="#" class="btn btn-info btn-sm" onclick="imprimer()">
                                         <i class="fa fa-dot-circle-o"></i> Facture
                                     </a>
+                                    <a class="pull-right">Total à payer : <span class="badge-dark"><%= prixTotal+" $" %><span</a>
                                 </div>
                             </div>
                         </div>
@@ -622,5 +629,10 @@
     </script>
     <!-- Main JS-->
     <script src="js/main.js"></script>
+    <script>
+        function imprimer(){
+            window.print();
+        }
+    </script>
     </body>
 </html>
