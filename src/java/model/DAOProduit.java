@@ -61,15 +61,15 @@ public class DAOProduit implements Operations {
        Connection conn;
        PreparedStatement ps;
        ResultSet rs;
-       String requete = "CALL SELECT_STOCK()";
+       String requete = "CALL SELECT_STOCK";
        try{
            conn = db.dbConnect();
            ps = conn.prepareStatement(requete);
            rs = ps.executeQuery();
            while(rs.next()){
-               donnee.add(new produit(rs.getInt("codep"), rs.getString("designprod"), 
+               donnee.add(new produit(rs.getInt("ida"), rs.getString("designprod"), 
                        rs.getString("designation"), rs.getDouble("pus"), rs.getInt("stockAlerte"), 
-                       rs.getDouble("qtee"), rs.getString("expiration"), rs.getString("fabrication")));
+                       rs.getDouble("quantite"), rs.getString("expiration"), rs.getString("fabrication")));
            }
            conn.close();
        }catch(SQLException e){

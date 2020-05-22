@@ -17,7 +17,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Forms</title>
-
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
@@ -43,7 +42,9 @@
     <!-- Style impression -->
     <link href="css/stylePrint.css" rel="stylesheet" type="text/css" media="print" />
 </head>
-    <%
+ 
+<body class="animsition">
+       <%
         
         int id = Integer.parseInt(session.getAttribute("id").toString());
         String client = session.getAttribute("client").toString();
@@ -55,7 +56,6 @@
         float prixTotal = 0;
         
     %>
-<body class="animsition">
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
         <header class="header-mobile d-block d-lg-none">
@@ -568,11 +568,10 @@
                                                     <td class="text-center"><%= s.getPvu()%>$</td>
                                                     <td class="text-center"><%= s.getPtv()%>$</td>
                                       
-                                                        <form action="servVente" method="POST">
+                                                        <form action="servDetailVente" method="POST">
                                                             <input type="hidden" name="action" value="3">
-                                                            <input type="hidden" name="produit" value="<%= s.getIdart() %>">
+                                                            <input type="hidden" name="produit" value="<%= s.getProduit()%>">
                                                             <input type="hidden" name="iddetal" value="<%= s.getIdd() %>">
-                                                            <input type="hidden" name="pvu" value="<%= s.getPvu() %>">
                                                             <input type="hidden" name="quantite" value="<%= s.getQtev() %>">
                                                             <input type="hidden" name="idvente" value="<%= s.getIdsort() %>">
                                                             <td id="action"><button type="submit" name="btnD" class="btn btn-danger btn-sm"><i class="fa fa-remove fa-10x"></i> </button>

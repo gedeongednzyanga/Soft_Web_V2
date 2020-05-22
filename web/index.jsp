@@ -10,6 +10,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
        <!-- Title Page-->
+        <link rel="icon" href="icons/favicon.ico">
+        
         <title>Login</title>
 
         <!-- Fontfaces CSS-->

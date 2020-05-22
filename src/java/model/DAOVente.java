@@ -65,7 +65,7 @@ public class DAOVente {
         sortie v = (sortie) obj;
         Connection conn;
         PreparedStatement ps;
-        String requete = "CALL INSERT_UPDATE_DELETE_VENTE (?,?,?,?)";
+        String requete = "CALL INSERT_UPDATE_DELETE_VENTE (?,?,?)";
         try{
             
             conn = db.dbConnect();
@@ -73,7 +73,6 @@ public class DAOVente {
             ps.setInt(1, v.getActionu());
             ps.setInt(2, v.getIdsort());
             ps.setInt(3, v.getIdclient());
-            ps.setInt(4, v.getIdart());
             ps.executeQuery();
             
         }catch(Exception e){
